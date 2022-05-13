@@ -4,10 +4,6 @@ const Model = require('../model')
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('<h1>BLOOMTECH HEROKU DEPLOYMENT</h1>')
-})
-
 router.get('/users', (req, res) => {
     Model.getUsers()
         .then(result => {
@@ -20,7 +16,13 @@ router.get('/hello', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-    Model.register()
+    Model.register({username: req.body.username, password: req.body.password})
+        .then(newUser => {
+            res.status(201).json(newUser)
+        })
+        .catch(err => {
+            res.status(404).json({message: "error"})
+        })
 })
 
 router.post('/login', (req, res) => {

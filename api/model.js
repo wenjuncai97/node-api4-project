@@ -1,3 +1,5 @@
+const req = require("express/lib/request");
+
 module.exports = {
     getUsers,
     register,
@@ -10,8 +12,9 @@ async function getUsers() {
     return USERS;
 }
 
-async function register({username, password}) {
-    
+async function register(username, password) {
+    USERS.push(username, password)
+    return USERS;
 }
 
 async function login({username, password}) {

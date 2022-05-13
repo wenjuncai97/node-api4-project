@@ -11,7 +11,7 @@ async function getUsers() {
 }
 
 async function register({username, password}) {
-
+    
 }
 
 async function login({username, password}) {
